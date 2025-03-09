@@ -1,0 +1,364 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Intro to Programming with Python</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Intro to Programming with Python</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>Have you ever thought programming was interesting, but don't know where to start? Do you want to automate repetitive tasks, start a new career, and learn what your computer is capable of? Whatever your reasons, this course is your foot in the door to programming in general and the Python programming language in particular.</p>
+<p>Learning Objectives:
+Learn the fundamentals of programming, including what a programming language is and how to run programs you create.
+Introduce basic programming concepts like variables, if statements, and loops.
+Learn to read and explain source code, and predict what a script will do.
+Get resources to install Python and where to go from here.</p>
+<p>Prerequisites:
+Some highschool level math and basic computer literacy is recommended.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="setup"><a class="header" href="#setup">Setup</a></h1>
+<p>Before we can begin we have to be able to write and run Python code. To facilitate that this chapter will help you write and run a simple program that prints "hello world" to the screen.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="quick-setup"><a class="header" href="#quick-setup">Quick Setup</a></h1>
+<p>Use an online IDE. For the library classes I'll be using <a href="https://pycompile.com/">pycompile</a> but any you find should be fine.</p>
+<blockquote>
+<p>IDE, integrated development environment. Basically the program that you write</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-python"><a class="header" href="#what-is-python">What is Python</a></h1>
+<ul>
+<li>high level</li>
+<li>dynamically typed</li>
+<li>interpreted</li>
+<li>interoperates well with c</li>
+<li>used in data science</li>
+<li>useful for writing scripts</li>
+</ul>
+<p>High Level means Python abstracts away the hardware details and differences between operating systems, at least as well as it can. This is as opposed to low level languages like C and assembly. Those languages are more fiddly and require more specialized knowledge to write, in exchange for performance. Most popular languages in use now are high level.</p>
+<p>Dynamically Typed means that when we get to variables, any variable can hold any type of value. This is like languages like Ruby and JavaScript, and unlike statically typed languages like C, C++, Java, C#, and so on. Dynamically typed languages are thought to be easier to write, but statically typed languages can make grantees and find issues before you even run your code.</p>
+<p>Interpreted means there is a program on your computer, called an interpreter, that reads your Python scripts and follows what those scripts say to do. Imagine the interpreter as a little robot and our scripts as sets of instructions for that robot to execute. This is as opposed to compiled languages. With those, a program called a compiler takes the code you write and translates it into native machine code your computer can understand. Interpreted languages tend to be slower, that little robot has some overhead, but it lends itself to languages that are high level and portable.</p>
+<p>Python interoperates well with C. We won't be touching these capabilities in this class, but you can call code written in C and C++ from Python relatively easily. This lends itself well to writing high level code that has good performance.</p>
+<p>Python is often used in data science. It has extensive library support for collating, analyzing, and visualizing data.</p>
+<p>For my purposes though, I use it for writing scripts. If I want to automate a complex task but don't want to write a whole dedicated program a few Python scripts are the way to go.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="data-types"><a class="header" href="#data-types">Data Types</a></h1>
+<h2 id="int"><a class="header" href="#int">Int</a></h2>
+<p>Integers, you may remember from a math class, are round numbers like 10, 42, a million, etc. They can also be negative. We will mostly be using integers for now. Integers are best for representing discrete values like how many people are in a room or how many streets a city has.</p>
+<h2 id="float"><a class="header" href="#float">Float</a></h2>
+<p>Float is short for floating point number, meaning a umber with a decimal point in it. Floats are used to represent real numbers and are best for continuous values like how many miles to a destination or how much gas isin your tank.</p>
+<h2 id="string"><a class="header" href="#string">String</a></h2>
+<p>Strings represent text like names, addresses, books, search results. You know, text. When we wrote and ran <code>print("hello world!")</code> the "hello world!" part was a string. Strings in your source code have quotation marks around them.</p>
+<h2 id="boolean"><a class="header" href="#boolean">Boolean</a></h2>
+<p>What is true? What is false? In python these are not mere philosophical questions. At the end of the day everything that goes on in your computer is high and low electrical signals representing ones and zeros, true and false. These are called Boolean values, named after a mathematician named George Bool. Think about bools like the answer to yes/no questions like "are you older than 18" and "will it rain today?". Unlike most other languages in Python True and False are capitalized like so.</p>
+<h2 id="none"><a class="header" href="#none">None</a></h2>
+<p>Finally that brings us to nothing. No really. Most programming languages have the concept of null or nil or nothing. This isn't zero and it's not false, those are valid values for integer and bool respectively. None is the absence of any value. It doesn't seem very useful does it? Well in a dynamic language like Python it's pretty much unavoidable.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="expressions"><a class="header" href="#expressions">Expressions</a></h1>
+<p>An expression is a bit of code that evaluates to something.</p>
+<h2 id="literals"><a class="header" href="#literals">Literals</a></h2>
+<p>Let's look at our Hello World program again:</p>
+<pre><code class="language-python">print("Hello World!")
+</code></pre>
+<p>The string "Hello World!" appears in our source code, it's not read from a file or input from the user or something like that. That makes it a literal. Here is another example.</p>
+<pre><code class="language-python">print(10)
+</code></pre>
+<p>Likewise, the value <code>10</code> is embedded in the source code itself. We'll see the alternative... right now actually.</p>
+<h2 id="operators"><a class="header" href="#operators">Operators</a></h2>
+<pre><code class="language-python">print(5 + 5)
+</code></pre>
+<p>It shouldn't be any great wonder what the above prints when we run it. Here we have two literal values and we are adding them with the plus sign. The plus sign is an example of an operator, it performs an operation. In this case the operation is addition. Let's look at some more examples.</p>
+<pre><code class="language-python">print(5 + 5) # prints 10
+print(5 - 5) # prints 0
+print(5 * 5) # prints 25
+print(5 / 5) # prints 1.0
+</code></pre>
+<p>No surprises here. The only curious one is the last one, you'll notice it prints <code>1.0</code> instead of just <code>1</code>. Why? Well in Python when you divide one number by another the result is always a float, even if the input numbers were integers.</p>
+<pre><code class="language-python">print(5 / 2) # prints 2.5
+</code></pre>
+<p>Similarly if you add or multiply a float with an integer the result is a float. This is an example of something called Type Coercion, and it's otherwise pretty rare in Python. JavaScript and PHP are infamous for it though. Just file that away somewhere.</p>
+<pre><code class="language-python">print(5 + 5 * 2)    # prints 15
+print( (5 + 5) * 2) # prints 20
+</code></pre>
+<p>Order of operations is respected. So multiplication and division go before addition and subtraction. You can use parentheses to ensure part of the expression is evaluated first.</p>
+<p>Finally there are the comparison operators.</p>
+<pre><code class="language-python">print(5 == 5) # prints True
+print(5 != 2) # prints True
+print(2 &lt; 5)  # prints True
+print(2 &gt; 5)  # prints False
+print(5 &lt;= 5) # prints True
+print(9 &gt;= 5) # prints True
+</code></pre>
+<p>The <code>==</code> operator checks for equality. If two numbers are the same it evaluates to the boolean value <code>True</code>. Otherwise <code>False</code>.</p>
+<p><code>!=</code> means not equals. It evaluates to <code>True</code> if the two things are <em>not</em> equal, otherwise <code>False</code>. We'll spend more time with the comparison operators soon, when we get to if statements.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="variables"><a class="header" href="#variables">Variables</a></h1>
+<pre><code class="language-python">a = 10
+print(a) # prints 10
+</code></pre>
+<p>Taking a look at the above, hopefully it's intuitive enough coming from a math background. Let's talk about it anyway.</p>
+<p>Here we are creating a variable <code>a</code> and we are <em>assigning</em> it a value of <code>10</code>. Variables are like buckets. We have a bucket with <code>a</code> painted on the side and we can store a value in it, in this case the integer <code>10</code>. We can then refer to the value stored in <code>a</code> and print it out. So far so good.</p>
+<pre><code class="language-python">a = 10
+print(a + 5) # prints 15
+</code></pre>
+<p>The above should also follow from our understanding. <code>a</code> contains a value we can use in expressions like any other. What do you think the following will print out?</p>
+<pre><code class="language-python">a = 10
+a = 20
+print(a)
+</code></pre>
+<p>In math the above would be nonsense. <code>a</code> can't both equal <code>10</code> and <code>20</code>! Well in Python, as well as most (but not all!) programming languages variables are not constant. They can be reassigned. This is how we can read the above code:</p>
+<ul>
+<li>Create a variable <code>a</code>.</li>
+<li>Set <code>a</code> to <code>10</code>.</li>
+<li>Dump out the old value of <code>a</code> and replace it with <code>20</code>.</li>
+<li>Print the current value of <code>a</code>, which is <code>20</code>.</li>
+</ul>
+<p>Let's test our understanding. What will the following print out?</p>
+<pre><code class="language-python">a = 10
+b = 20
+c = a + b
+print(c)
+</code></pre>
+<p>It prints out <code>30</code>! The variable <code>c</code> is set to the result of <code>a</code> plus <code>b</code>. Ok, now for a tricky one.</p>
+<pre><code class="language-python">a = 10
+b = 20
+c = a + b
+b = 5
+print(c) # what does it print?
+</code></pre>
+<p>It still prints <code>30</code>. Why? Let's step through it.</p>
+<ul>
+<li>Create a variable <code>a</code> and set it to <code>10</code>.</li>
+<li>Create a variable <code>b</code> and set it to <code>20</code>.</li>
+<li>Create a variable <code>c</code> and set it to the result of <code>a + b</code>, which is <code>30</code>.</li>
+<li>Reassign <code>b</code> to equal <code>5</code>. Note that the value of <code>c</code> has not changed.</li>
+<li>Print <code>c</code></li>
+</ul>
+<p>In other words <code>c = a + b</code> is only true at the moment that line is executed. It is <em>not</em> necessarily true after that. <code>c</code> doesn't know or care where it got its values from, it only knows it contains a <code>30</code>. Make sense? Ok, one more concept.</p>
+<pre><code class="language-python">a = 10
+a = a + 5
+print(a) # what does it print?
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="if"><a class="header" href="#if">If</a></h1>
+<p>Sometimes we only want to run some code when a condition is met. Imagine you are writing software to check if a person is old enough to be admitted to a club. In English I would say something like "if the age is less than 18 print 'you are not old enough'. Otherwise, print 'you are old enough'." Let's see what that looks like in Python.</p>
+<pre><code class="language-python">age = 16
+
+if age &lt; 18:
+    print("you are not old enough.")
+</code></pre>
+<p>So far so good. We see the keyword <code>if</code> followed by a conditional. That's an expression that evaluates to a Boolean. Then a colon followed by an indented block of code. If the conditional evaluates to true the block of code is executed. Otherwise, well, what if we run the following?</p>
+<pre><code class="language-python">age = 20
+
+if age &lt; 18:
+    print("you are not old enough.")
+</code></pre>
+<p>Nothing happens! We probably want to print something if the person is old enough. Let's modify our code.</p>
+<pre><code class="language-python">age = 20
+
+if age &lt; 18:
+    print("you are not old enough.")
+else:
+    print("you are old enough!")
+</code></pre>
+<p>The above will print "you are old enough". The syntax is similar, we have another special keyword <code>else</code> followed by a colon and an indented block of code. This block will only execute if the previous condition was false.</p>
+<p>One more wrinkle, le's make our club harder to get into:</p>
+<pre><code class="language-python">age = 20
+
+if age &lt; 18:
+    print("you are not old enough.")
+elif age &lt; 21:
+    print("you are almost old enough")
+else:
+    print("you are old enough!")
+</code></pre>
+<p>We've introduced the somewhat awkward <code>elif</code> keyword. This is short for "else if". Let's read the above block of code as if it's a sentence.</p>
+<p>If age is less than 18 print "you are not old enough"
+Otherwise, if age is less than 21 print "you are almost old enough"
+Finally, if neither condition was true print "you are old enough!"</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="while"><a class="header" href="#while">While</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="interlude-the-collatz-conjecture"><a class="header" href="#interlude-the-collatz-conjecture">Interlude: The Collatz Conjecture</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
