@@ -188,6 +188,19 @@ else:
 <p>If age is less than 18 print "you are not old enough"
 Otherwise, if age is less than 21 print "you are almost old enough"
 Finally, if neither condition was true print "you are old enough!"</p>
+<p>What if we write something like the following?</p>
+<pre><code class="language-python">age = 20
+
+if age &lt; 18:
+    print("you are not old enough.")
+if age &lt; 21:
+    print("you are almost old enough.")
+else:
+    print("you are old enough!")
+</code></pre>
+<p>The above works fine if the age is 18 or over. What happens if it is 17 or less?</p>
+<p>Two things print! Both "you are not old enough." and "you are almost old enough." What happened?</p>
+<p>We broke the chain of if, elif, and else. Before one and only one of the indented blocks could be run and that's a powerful guarantee.</p>
 
                     </main>
 

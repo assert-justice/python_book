@@ -153,6 +153,25 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="interlude-the-collatz-conjecture"><a class="header" href="#interlude-the-collatz-conjecture">Interlude: The Collatz Conjecture</a></h1>
+<p>Dun dun dunnnn. It's not too scary I promise. Consider the following given procedure:</p>
+<ul>
+<li>Take a number n</li>
+<li>If it is even divide it by 2</li>
+<li>Otherwise multiply it by 3 and add 1</li>
+</ul>
+<p>You can repeat this process as many times as you like. What happens?</p>
+<p>Well the Collatz Conjecture says that every number will eventually get to 1. It's a conjecture because mathematitians simply don't know how to prove one way or another. A whole bunch of numbers have been tried and they all eventually make it to one. Let's take this repeated procedure and turn it into a loop.</p>
+<pre><code class="language-python">n = 7
+steps = 0
+while n &gt; 1:
+    if n % 2 == 0:
+        n = n // 2
+    else:
+        n = n * 3 + 1
+    print(n)
+    steps += 1
+print("steps:", steps)
+</code></pre>
 
                     </main>
 

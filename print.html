@@ -167,8 +167,9 @@ Some highschool level math and basic computer literacy is recommended.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="quick-setup"><a class="header" href="#quick-setup">Quick Setup</a></h1>
 <p>Use an online IDE. For the library classes I'll be using <a href="https://pycompile.com/">pycompile</a> but any you find should be fine.</p>
 <blockquote>
-<p>IDE, integrated development environment. Basically the program that you write</p>
+<p>IDE, integrated development environment. Basically the program that you write code in and can run it from.</p>
 </blockquote>
+<p>In the code window clear anything that is already there and type <code>print("hello world!")</code>. Click the "run code" button. In the console to the right you should see the text "hello world!". Congratulations! You've written and run your first Python program!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-python"><a class="header" href="#what-is-python">What is Python</a></h1>
 <ul>
 <li>high level</li>
@@ -315,8 +316,80 @@ else:
 <p>If age is less than 18 print "you are not old enough"
 Otherwise, if age is less than 21 print "you are almost old enough"
 Finally, if neither condition was true print "you are old enough!"</p>
+<p>What if we write something like the following?</p>
+<pre><code class="language-python">age = 20
+
+if age &lt; 18:
+    print("you are not old enough.")
+if age &lt; 21:
+    print("you are almost old enough.")
+else:
+    print("you are old enough!")
+</code></pre>
+<p>The above works fine if the age is 18 or over. What happens if it is 17 or less?</p>
+<p>Two things print! Both "you are not old enough." and "you are almost old enough." What happened?</p>
+<p>We broke the chain of if, elif, and else. Before one and only one of the indented blocks could be run and that's a powerful guarantee.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="while"><a class="header" href="#while">While</a></h1>
+<p>Before we learn the new keyword <code>while</code> let's spend a little more time with <code>if</code>. Consider:</p>
+<pre><code class="language-python">i = 0
+
+if i &lt; 3:
+    print(i)
+    i = i+1
+</code></pre>
+<p>What will that print? You might be tempted to say 1 but the answer is actually 0. i is printed and <em>then</em> incremented. What does the below print?</p>
+<pre><code class="language-python">i = 0
+
+if i &lt; 3:
+    print(i)
+    i = i+1
+
+if i &lt; 3:
+    print(i)
+    i = i+1
+
+if i &lt; 3:
+    print(i)
+    i = i+1
+
+if i &lt; 3:
+    print(i)
+    i = i+1
+</code></pre>
+<p>It prints</p>
+<pre><code>0
+1
+2
+</code></pre>
+<p>Why not 3? Because, of course, 3 is not less than 3 so the last block is not executed.
+Now, wouldn't it be helpful if, instead of all these if statements, we had a way to run code over and over again until a condition became false? Behold:</p>
+<pre><code class="language-python">i = 0
+
+while i &lt; 3:
+    print(i)
+    i = i+1
+</code></pre>
+<p>This prints exactly the same thing.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="interlude-the-collatz-conjecture"><a class="header" href="#interlude-the-collatz-conjecture">Interlude: The Collatz Conjecture</a></h1>
+<p>Dun dun dunnnn. It's not too scary I promise. Consider the following given procedure:</p>
+<ul>
+<li>Take a number n</li>
+<li>If it is even divide it by 2</li>
+<li>Otherwise multiply it by 3 and add 1</li>
+</ul>
+<p>You can repeat this process as many times as you like. What happens?</p>
+<p>Well the Collatz Conjecture says that every number will eventually get to 1. It's a conjecture because mathematitians simply don't know how to prove one way or another. A whole bunch of numbers have been tried and they all eventually make it to one. Let's take this repeated procedure and turn it into a loop.</p>
+<pre><code class="language-python">n = 7
+steps = 0
+while n &gt; 1:
+    if n % 2 == 0:
+        n = n // 2
+    else:
+        n = n * 3 + 1
+    print(n)
+    steps += 1
+print("steps:", steps)
+</code></pre>
 
                     </main>
 

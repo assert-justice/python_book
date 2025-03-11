@@ -153,6 +153,46 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="while"><a class="header" href="#while">While</a></h1>
+<p>Before we learn the new keyword <code>while</code> let's spend a little more time with <code>if</code>. Consider:</p>
+<pre><code class="language-python">i = 0
+
+if i &lt; 3:
+    print(i)
+    i = i+1
+</code></pre>
+<p>What will that print? You might be tempted to say 1 but the answer is actually 0. i is printed and <em>then</em> incremented. What does the below print?</p>
+<pre><code class="language-python">i = 0
+
+if i &lt; 3:
+    print(i)
+    i = i+1
+
+if i &lt; 3:
+    print(i)
+    i = i+1
+
+if i &lt; 3:
+    print(i)
+    i = i+1
+
+if i &lt; 3:
+    print(i)
+    i = i+1
+</code></pre>
+<p>It prints</p>
+<pre><code>0
+1
+2
+</code></pre>
+<p>Why not 3? Because, of course, 3 is not less than 3 so the last block is not executed.
+Now, wouldn't it be helpful if, instead of all these if statements, we had a way to run code over and over again until a condition became false? Behold:</p>
+<pre><code class="language-python">i = 0
+
+while i &lt; 3:
+    print(i)
+    i = i+1
+</code></pre>
+<p>This prints exactly the same thing.</p>
 
                     </main>
 
